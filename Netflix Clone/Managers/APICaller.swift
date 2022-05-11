@@ -15,4 +15,25 @@ class APICaller {
     
     private init () {}
     
+    
+    func getTrendingMovies(completion: @escaping(String) -> Void) {
+        let endpoint = "\(baseURL)/3/trending/movie/week?api_key=\(baseURL)"
+        print(endpoint)
+        
+        guard let url = URL(string: endpoint) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let _ = error,
+                let response = response as? HTTPURLResponse, response.statusCode == 200,
+                let data = data {
+                    return
+            }
+            do {
+                let decoder = JSONDecoder()
+            } catch {
+                print(error)
+            }
+        }
+        task.resume()
+    }
 }
