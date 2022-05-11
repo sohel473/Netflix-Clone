@@ -17,6 +17,7 @@
 		7D43FBF9281FCF9900A895BA /* UpcomingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D43FBF8281FCF9900A895BA /* UpcomingVC.swift */; };
 		7D43FBFB281FCFA900A895BA /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D43FBFA281FCFA900A895BA /* SearchVC.swift */; };
 		7D43FBFD281FCFC300A895BA /* DownloadsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D43FBFC281FCFC300A895BA /* DownloadsVC.swift */; };
+		7D452013282BDD6C007670BD /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D452012282BDD6C007670BD /* APICaller.swift */; };
 		7DC387B4282BB10500B3638C /* HeroHeaderUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC387B3282BB10500B3638C /* HeroHeaderUIView.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		7D43FBF8281FCF9900A895BA /* UpcomingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingVC.swift; sourceTree = "<group>"; };
 		7D43FBFA281FCFA900A895BA /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		7D43FBFC281FCFC300A895BA /* DownloadsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsVC.swift; sourceTree = "<group>"; };
+		7D452012282BDD6C007670BD /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		7DC387B3282BB10500B3638C /* HeroHeaderUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroHeaderUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,6 +82,7 @@
 		7D34C8962824FB2200FEC1D0 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7D452012282BDD6C007670BD /* APICaller.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				7D43FBFB281FCFA900A895BA /* SearchVC.swift in Sources */,
 				7D43FBDE281FCD0200A895BA /* AppDelegate.swift in Sources */,
 				7D34C8982824FB8B00FEC1D0 /* CollectionViewTableViewCell.swift in Sources */,
+				7D452013282BDD6C007670BD /* APICaller.swift in Sources */,
 				7DC387B4282BB10500B3638C /* HeroHeaderUIView.swift in Sources */,
 				7D43FBF7281FCF4700A895BA /* HomeVC.swift in Sources */,
 				7D43FBF4281FCEDE00A895BA /* MainTabBarVC.swift in Sources */,
