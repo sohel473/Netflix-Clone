@@ -39,7 +39,7 @@ class HomeVC: UIViewController {
         homeTable.delegate = self
         homeTable.dataSource = self
         
-        headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 530))
         homeTable.tableHeaderView = headerView
         configureHeroHeaderView()
     }
