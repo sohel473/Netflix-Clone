@@ -55,7 +55,9 @@ class TitleTableViewCell: UITableViewCell {
             titlePosterUIImageView.widthAnchor.constraint(equalToConstant: 100),
             
             titleLabel.leadingAnchor.constraint(equalTo: titlePosterUIImageView.trailingAnchor, constant: 20),
-            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 60),
+            titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+//            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             playButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             playButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),

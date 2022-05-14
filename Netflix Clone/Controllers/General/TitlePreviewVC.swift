@@ -12,7 +12,7 @@ class TitlePreviewVC: UIViewController {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Title Label"
+//        label.text = "Title Label"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .bold)
         label.numberOfLines = 0
@@ -21,7 +21,7 @@ class TitlePreviewVC: UIViewController {
     
     private let overviewLabel: UILabel = {
         let label = UILabel()
-        label.text = "OverView Label"
+//        label.text = "OverView Label"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .regular)
         label.numberOfLines = 0

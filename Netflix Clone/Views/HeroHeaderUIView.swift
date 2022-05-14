@@ -33,7 +33,8 @@ class HeroHeaderUIView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "heroImage")
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        imageView.image = UIImage(named: "heroImage")
         return imageView
     }()
     
@@ -48,6 +49,7 @@ class HeroHeaderUIView: UIView {
     
     private func applyContrants() {
         NSLayoutConstraint.activate([
+            
             playButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
             playButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
             playButton.widthAnchor.constraint(equalToConstant: 120),
@@ -75,6 +77,13 @@ class HeroHeaderUIView: UIView {
     override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)
         heroImageView.frame = bounds
-        
+
+    }
+    
+    func configure(with model: String) {
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(model)") else { return }
+//        print(url)
+        heroImageView.sd_setImage(with: url, completed: nil)
+//        print(model)
     }
 }

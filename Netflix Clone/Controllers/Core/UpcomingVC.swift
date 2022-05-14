@@ -70,5 +70,28 @@ extension UpcomingVC: UITableViewDelegate, UITableViewDataSource {
         150
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let title = titles[indexPath.row]
+        guard let title_name = title.original_name ?? title.original_title, let title_overview = title.overview
+        else {
+            return
+        }
+        
+        APICaller.shared.getMovies(query: title_name + " trailer") { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let videoElement):
+                DispatchQueue.main.async {
+                    let vc = TitlePreviewVC()
+                    vc.configure(with: TitlePreviewViewModel(title: title_name, titleOverView: title_overview, youtubeOverview: videoElement))
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
 }

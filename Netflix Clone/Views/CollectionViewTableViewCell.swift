@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CollectionViewTableViewCellDelegate: AnyObject {
-    func CollectionViewTableViewCelldidTap(_ cell: CollectionViewTableViewCell, viewModel: TitlePreviewViewModel)
+    func CollectionViewTableViewCelldidTap(_ viewModel: TitlePreviewViewModel)
 }
 
 class CollectionViewTableViewCell: UITableViewCell {
@@ -52,6 +52,18 @@ class CollectionViewTableViewCell: UITableViewCell {
             self.collectionView.reloadData()
         }
     }
+    
+    func downloadAt(indexPath: IndexPath) {
+//        print(titles[indexPath.row].original_title)
+        DataPersistenceManager.shared.downloadTitleWith(model: titles[indexPath.row]) { result in
+            switch result {
+            case .success():
+                print("Title Download Successful!")
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
 
 extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource{
@@ -77,11 +89,24 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
             switch result {
             case .success(let videoElement):
                 let model = TitlePreviewViewModel(title: title_name, titleOverView: title_overview, youtubeOverview: videoElement)
-                self.delegate?.CollectionViewTableViewCelldidTap(self, viewModel: model)
+                self.delegate?.CollectionViewTableViewCelldidTap(model)
             case .failure(let error):
                 print(error)
             }
         }
-        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            let downloadAction = UIAction(title: "Download", image: nil, identifier: nil, discoverabilityTitle: nil, state: .off) { [weak self] _ in
+                guard let self = self else { return }
+//                print(self.titles[indexPath.row].poster_path)
+//                print(self.titles[indexPath.row].original_title)
+//                print(self.titles[indexPath.row].original_name)
+                self.downloadAt(indexPath: indexPath)
+            }
+            return UIMenu(title: "Want to Download?", image: nil, identifier: nil, options: .displayInline, children: [downloadAction])
+        }
+        return config
     }
 }

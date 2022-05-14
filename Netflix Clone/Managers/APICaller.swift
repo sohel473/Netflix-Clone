@@ -17,7 +17,8 @@ class APICaller {
     private let baseURL = "https://api.themoviedb.org"
     private let API_KEY = "d537efe84ac70e422039c632f3907c23"
     private let YouTube_baseURL = "https://youtube.googleapis.com/youtube/v3/search?"
-    private let YouTube_API_KEY = "AIzaSyAWgmuN6Bb8BFV_p-gIxv8OY1KUZW7RKgg"
+//    private let YouTube_API_KEY1 = "AIzaSyAWgmuN6Bb8BFV_p-gIxv8OY1KUZW7RKgg"
+    private let YouTube_API_KEY2 = "AIzaSyCAJsBNySy-HqREsSJnitMCK2OwDEVmCHY"
     
     private init () {}
     
@@ -187,7 +188,7 @@ class APICaller {
     func search(with query: String, completion: @escaping(Result<[Title], Error>) -> Void) {
         
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
-        print(query)
+//        print(query)
         let endpoint = "\(baseURL)/3/search/movie?api_key=\(API_KEY)&query=\(query)"
         //        print(endpoint)
         
@@ -217,7 +218,7 @@ class APICaller {
     func getMovies(query: String, completion: @escaping(Result<VideoElement, Error>) -> Void) {
         
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
-        let endpoint = "\(YouTube_baseURL)q=\(query)&key=\(YouTube_API_KEY)"
+        let endpoint = "\(YouTube_baseURL)q=\(query)&key=\(YouTube_API_KEY2)"
 //        print(endpoint)
         guard let url = URL(string: endpoint) else { return }
         
@@ -228,7 +229,7 @@ class APICaller {
                 return
             }
             do {
-                //                print("IN")
+//                 print("IN")
 //                let results = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
                 let decoder = JSONDecoder()
                 let results = try decoder.decode(YoutubeSearchResponse.self, from: data)

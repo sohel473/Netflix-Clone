@@ -17,6 +17,8 @@ enum Section: Int {
 
 class HomeVC: UIViewController {
     
+    private var headerView: HeroHeaderUIView?
+    
     let sectionTitles: [String] = ["Trending Movies", "Trending Tv", "Popular", "Upcoming Movies", "Top Rated"]
     
     private let homeTable: UITableView = {
@@ -37,7 +39,23 @@ class HomeVC: UIViewController {
         homeTable.delegate = self
         homeTable.dataSource = self
         
-        homeTable.tableHeaderView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        homeTable.tableHeaderView = headerView
+        configureHeroHeaderView()
+    }
+    
+    func configureHeroHeaderView() {
+        APICaller.shared.getTrendingMovies { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let titles):
+                guard let randomTitle = titles.randomElement(), let poster_path = randomTitle.poster_path else {return}
+//                print(poster_path)
+                self.headerView?.configure(with: poster_path)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     private func configureNavbar() {
@@ -145,17 +163,17 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         return 40
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let defaultOffset = view.safeAreaInsets.top
-        let offset = scrollView.contentOffset.y + defaultOffset
-        
-        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let defaultOffset = view.safeAreaInsets.top
+//        let offset = scrollView.contentOffset.y + defaultOffset
+//
+//        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+//    }
 }
 
 extension HomeVC: CollectionViewTableViewCellDelegate {
     
-    func CollectionViewTableViewCelldidTap(_ cell: CollectionViewTableViewCell, viewModel: TitlePreviewViewModel) {
+    func CollectionViewTableViewCelldidTap(_ viewModel: TitlePreviewViewModel) {
         
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
