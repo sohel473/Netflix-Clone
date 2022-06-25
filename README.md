@@ -1,2 +1,2 @@
 # Netflix-Clone
-Netflix Clone Using UIKit, CoreML, without StoryBoard
+Netflix Clone Using UIKit, CoreData, without StoryBoard
